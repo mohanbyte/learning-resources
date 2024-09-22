@@ -1,6 +1,5 @@
 # Javascript
 
-
 # What is Variable
 
   **Variable** is named storage used to hold data that can be change later during program execution. think variable as container which is used to store data like number, string and
@@ -51,6 +50,7 @@
 1. **Global Scope**: any variable declared outside function or block has global scope. This means that variable are accesible anywhere in code.
 2. **Function Scope**: varibale declared with `var` keyword inside function has function scope. This means that variable is accesible in only that function.
 3. **Block Scope**: variable declared using `let` and `const` keyword in block `{}` has block scope. This means variable is accesible within only that block.
+
 
 # Hoisting
 
@@ -283,13 +283,13 @@
       let undef: undefined;
       let sym: symbol = Symbol('id');
       let big: bigint = 1234567890123456789012345678901234567890n;
-    
+  
       // Object types
       let obj: object = { name: 'Alice' };
       let arr: object = [1, 2, 3];
       let func: Function = function() {};
       let nothing: null = null;
-    
+  
       // Type checks
       console.log(typeof num); // "number"
       console.log(typeof str); // "string"
@@ -315,6 +315,23 @@
    variables that are not initialized return `undefined`.
 5. Symbol and bigInt `<br>`
    `typeof` Symbols returns `Symbol` and `typeof` bigInt return `bigInt`.
+
+```javascript
+Let a= 10;
+
+let b= new Number(10); // returns a number object ; actual value in b.valueOf(); - can get toFixed()
+
+a===b //false; number , object
+
+a==b // true
+
+<!---------------------------------/>
+let a=9 , b =10;
+
+let c = (a, b);
+
+console.log(c);//10
+```
 
 ## Advanced
 
