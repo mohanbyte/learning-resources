@@ -1,5 +1,3 @@
-
-
 # **JavaScript Fundamentals & Important Concepts**
 
 ---
@@ -10,44 +8,44 @@
 
 ```javascript
 var name = "John"; // Global or function-scoped
-let age = 30;      // Block-scoped
+let age = 30; // Block-scoped
 const country = "USA"; // Block-scoped, cannot be reassigned
 ```
 
 ### **Data Types**
 
 ```javascript
-let str = "Hello";          // String
-let num = 100;              // Number
-let isBoolean = true;       // Boolean
-let nothing = null;         // Null
-let notDefined;             // Undefined
+let str = "Hello"; // String
+let num = 100; // Number
+let isBoolean = true; // Boolean
+let nothing = null; // Null
+let notDefined; // Undefined
 let obj = { key: "value" }; // Object
 ```
 
 ### **Operators**
 
 ```javascript
-let sum = 10 + 5;  // Arithmetic operator
-let isEqual = 10 == '10';  // true (loose equality)
-let isStrictEqual = 10 === '10';  // false (strict equality)
-let andCondition = true && false;  // Logical AND
+let sum = 10 + 5; // Arithmetic operator
+let isEqual = 10 == "10"; // true (loose equality)
+let isStrictEqual = 10 === "10"; // false (strict equality)
+let andCondition = true && false; // Logical AND
 ```
 
 ### **Conditional Statements**
 
 ```javascript
 if (age >= 18) {
-    console.log("Adult");
+  console.log("Adult");
 } else {
-    console.log("Minor");
+  console.log("Minor");
 }
 
 switch (country) {
-  case 'USA':
+  case "USA":
     console.log("You're from the USA.");
     break;
-  case 'India':
+  case "India":
     console.log("You're from India.");
     break;
   default:
@@ -59,19 +57,19 @@ switch (country) {
 
 ```javascript
 for (let i = 0; i < 5; i++) {
-    console.log(i);
+  console.log(i);
 }
 
 while (age < 35) {
-    age++;
+  age++;
 }
 
 for (let key in obj) {
-    console.log(key, obj[key]); // Iterates over object keys
+  console.log(key, obj[key]); // Iterates over object keys
 }
 
 for (let value of [1, 2, 3]) {
-    console.log(value); // Iterates over array values
+  console.log(value); // Iterates over array values
 }
 ```
 
@@ -83,15 +81,15 @@ for (let value of [1, 2, 3]) {
 
 ```javascript
 function greet(name) {
-    return `Hello, ${name}!`;
+  return `Hello, ${name}!`;
 }
 ```
 
 ### **Function Expressions**
 
 ```javascript
-const greet = function(name) {
-    return `Hello, ${name}!`;
+const greet = function (name) {
+  return `Hello, ${name}!`;
 };
 ```
 
@@ -105,7 +103,7 @@ const greet = (name) => `Hello, ${name}!`;
 
 ```javascript
 function sayHello(callback) {
-    callback('Hello!');
+  callback("Hello!");
 }
 
 sayHello((message) => console.log(message)); // Passing a function as an argument
@@ -114,8 +112,8 @@ sayHello((message) => console.log(message)); // Passing a function as an argumen
 ### **IIFE (Immediately Invoked Function Expression)**
 
 ```javascript
-(function() {
-    console.log("This function runs immediately!");
+(function () {
+  console.log("This function runs immediately!");
 })();
 ```
 
@@ -127,11 +125,11 @@ sayHello((message) => console.log(message)); // Passing a function as an argumen
 
 ```javascript
 let person = {
-    name: "Alice",
-    age: 25,
-    greet: function() {
-        console.log(`Hello, I'm ${this.name}`);
-    }
+  name: "Alice",
+  age: 25,
+  greet: function () {
+    console.log(`Hello, I'm ${this.name}`);
+  },
 };
 person.greet();
 ```
@@ -139,15 +137,15 @@ person.greet();
 ### **Accessing Properties**
 
 ```javascript
-console.log(person.name);        // Dot notation
-console.log(person['age']);      // Bracket notation
+console.log(person.name); // Dot notation
+console.log(person["age"]); // Bracket notation
 ```
 
 ### **Object Methods**
 
 ```javascript
-person.greet = function() {
-    console.log(`Hi, my name is ${this.name}`);
+person.greet = function () {
+  console.log(`Hi, my name is ${this.name}`);
 };
 person.greet();
 ```
@@ -156,10 +154,10 @@ person.greet();
 
 ```javascript
 const user = {
-    name: 'Sam',
-    showThis: function() {
-        console.log(this); // Points to the object 'user'
-    }
+  name: "Sam",
+  showThis: function () {
+    console.log(this); // Points to the object 'user'
+  },
 };
 user.showThis();
 ```
@@ -177,17 +175,17 @@ let numbers = [1, 2, 3];
 ### **Array Methods**
 
 ```javascript
-numbers.push(4);           // [1, 2, 3, 4]
-numbers.pop();             // [1, 2, 3]
-numbers.splice(1, 1);      // Removes 1 element at index 1: [1, 3]
+numbers.push(4); // [1, 2, 3, 4]
+numbers.pop(); // [1, 2, 3]
+numbers.splice(1, 1); // Removes 1 element at index 1: [1, 3]
 ```
 
 ### **Array Iteration**
 
 ```javascript
-numbers.forEach(num => console.log(num)); // Iterating using forEach
+numbers.forEach((num) => console.log(num)); // Iterating using forEach
 
-let doubled = numbers.map(num => num * 2); // Transforming each item
+let doubled = numbers.map((num) => num * 2); // Transforming each item
 ```
 
 ---
@@ -204,8 +202,8 @@ var globalVar = "I'm global!";
 
 ```javascript
 function myFunction() {
-    var localVar = "I'm local!";
-    console.log(localVar); // Accessible here
+  var localVar = "I'm local!";
+  console.log(localVar); // Accessible here
 }
 console.log(localVar); // Not accessible here
 ```
@@ -214,8 +212,8 @@ console.log(localVar); // Not accessible here
 
 ```javascript
 if (true) {
-    let blockScoped = "I'm block-scoped!";
-    console.log(blockScoped); // Accessible here
+  let blockScoped = "I'm block-scoped!";
+  console.log(blockScoped); // Accessible here
 }
 console.log(blockScoped); // Not accessible here
 ```
@@ -224,11 +222,11 @@ console.log(blockScoped); // Not accessible here
 
 ```javascript
 function outerFunction() {
-    let outerVar = "I'm outside!";
-  
-    return function innerFunction() {
-        console.log(outerVar); // Inner function retains access to outerVar
-    };
+  let outerVar = "I'm outside!";
+
+  return function innerFunction() {
+    console.log(outerVar); // Inner function retains access to outerVar
+  };
 }
 const closureExample = outerFunction();
 closureExample();
@@ -253,7 +251,7 @@ let y = 10;
 ```javascript
 sayHello(); // Works due to hoisting
 function sayHello() {
-    console.log("Hello!");
+  console.log("Hello!");
 }
 ```
 
@@ -265,10 +263,10 @@ function sayHello() {
 
 ```javascript
 function asyncTask(callback) {
-    setTimeout(() => {
-        console.log("Task completed");
-        callback();
-    }, 1000);
+  setTimeout(() => {
+    console.log("Task completed");
+    callback();
+  }, 1000);
 }
 
 asyncTask(() => console.log("Callback executed"));
@@ -278,21 +276,21 @@ asyncTask(() => console.log("Callback executed"));
 
 ```javascript
 let promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Success!"), 1000);
+  setTimeout(() => resolve("Success!"), 1000);
 });
 
 promise
-    .then(result => console.log(result))  // Logs "Success!"
-    .catch(error => console.log(error));
+  .then((result) => console.log(result)) // Logs "Success!"
+  .catch((error) => console.log(error));
 ```
 
 ### **Async/Await**
 
 ```javascript
 async function fetchData() {
-    let result = await fetch('https://api.example.com/data');
-    let data = await result.json();
-    console.log(data);
+  let result = await fetch("https://api.example.com/data");
+  let data = await result.json();
+  console.log(data);
 }
 ```
 
@@ -316,7 +314,7 @@ console.log("End");
 
 ```javascript
 document.getElementById("myButton").addEventListener("click", () => {
-    console.log("Button clicked!");
+  console.log("Button clicked!");
 });
 ```
 
@@ -328,11 +326,11 @@ document.getElementById("myButton").addEventListener("click", () => {
 
 ```javascript
 try {
-    throw new Error("Something went wrong");
+  throw new Error("Something went wrong");
 } catch (error) {
-    console.error(error.message);
+  console.error(error.message);
 } finally {
-    console.log("This runs regardless of success or failure");
+  console.log("This runs regardless of success or failure");
 }
 ```
 
@@ -370,15 +368,15 @@ document.body.appendChild(newElement);
 
 ```javascript
 function Car(make, model) {
-    this.make = make;
-    this.model = model;
+  this.make = make;
+  this.model = model;
 }
 
-Car.prototype.getDetails = function() {
-    return `${this.make} ${this.model}`;
+Car.prototype.getDetails = function () {
+  return `${this.make} ${this.model}`;
 };
 
-let myCar = new Car('Toyota', 'Corolla');
+let myCar = new Car("Toyota", "Corolla");
 console.log(myCar.getDetails());
 ```
 
@@ -386,17 +384,17 @@ console.log(myCar.getDetails());
 
 ```javascript
 class Car {
-    constructor(make, model) {
-        this.make = make;
-        this.model = model;
-    }
+  constructor(make, model) {
+    this.make = make;
+    this.model = model;
+  }
 
-    getDetails() {
-        return `${this.make} ${this.model}`;
-    }
+  getDetails() {
+    return `${this.make} ${this.model}`;
+  }
 }
 
-let myCar = new Car('Honda', 'Civic');
+let myCar = new Car("Honda", "Civic");
 console.log(myCar.getDetails());
 ```
 
@@ -422,7 +420,7 @@ console.log(`Hello, ${name}!`);
 
 ```javascript
 let [a, b] = [1, 2];
-let {name, age} = {name: "Alice", age: 25};
+let { name, age } = { name: "Alice", age: 25 };
 ```
 
 ### **Spread and Rest Operators**
@@ -432,7 +430,7 @@ let arr = [1, 2, 3];
 let newArr = [...arr, 4, 5]; // [1, 2, 3, 4, 5]
 
 function sum(...args) {
-    return args.reduce((acc, curr) => acc + curr, 0);
+  return args.reduce((acc, curr) => acc + curr, 0);
 }
 ```
 
@@ -443,7 +441,7 @@ function sum(...args) {
 export const myVar = 42;
 
 // In file2.js
-import { myVar } from './file1.js';
+import { myVar } from "./file1.js";
 ```
 
 ---
@@ -462,9 +460,7 @@ console.log(obj.name);
 
 ```javascript
 let person = { name: "Alice", age: 25 };
-let jsonString = JSON
-
-.stringify(person);
+let jsonString = JSON.stringify(person);
 console.log(jsonString);
 ```
 
@@ -474,10 +470,10 @@ console.log(jsonString);
 
 ```javascript
 function applyOperation(arr, operation) {
-    return arr.map(operation);
+  return arr.map(operation);
 }
 
-let result = applyOperation([1, 2, 3], x => x * 2);
+let result = applyOperation([1, 2, 3], (x) => x * 2);
 console.log(result); // [2, 4, 6]
 ```
 
@@ -487,11 +483,11 @@ console.log(result); // [2, 4, 6]
 
 ```javascript
 function outer() {
-    let counter = 0;
-    return function() {
-        counter++;
-        console.log(counter);
-    };
+  let counter = 0;
+  return function () {
+    counter++;
+    console.log(counter);
+  };
 }
 
 const increment = outer();
@@ -513,10 +509,10 @@ console.log(this); // Refers to the global object (window in browsers)
 
 ```javascript
 let person = {
-    name: "Alice",
-    greet() {
-        console.log(this.name); // Refers to 'person' object
-    }
+  name: "Alice",
+  greet() {
+    console.log(this.name); // Refers to 'person' object
+  },
 };
 person.greet();
 ```
@@ -525,12 +521,12 @@ person.greet();
 
 ```javascript
 const obj = {
-    regularFunction: function() {
-        console.log(this); // Refers to obj
-    },
-    arrowFunction: () => {
-        console.log(this); // Refers to the global object, not obj
-    }
+  regularFunction: function () {
+    console.log(this); // Refers to obj
+  },
+  arrowFunction: () => {
+    console.log(this); // Refers to the global object, not obj
+  },
 };
 obj.regularFunction();
 obj.arrowFunction();
@@ -544,14 +540,14 @@ obj.arrowFunction();
 
 ```javascript
 function Animal(name) {
-    this.name = name;
+  this.name = name;
 }
 
-Animal.prototype.speak = function() {
-    console.log(`${this.name} makes a sound`);
+Animal.prototype.speak = function () {
+  console.log(`${this.name} makes a sound`);
 };
 
-let dog = new Animal('Dog');
+let dog = new Animal("Dog");
 dog.speak(); // Dog makes a sound
 console.log(dog.__proto__ === Animal.prototype); // true
 ```
@@ -560,18 +556,18 @@ console.log(dog.__proto__ === Animal.prototype); // true
 
 ```javascript
 function Dog(name, breed) {
-    Animal.call(this, name); // Inherit properties
-    this.breed = breed;
+  Animal.call(this, name); // Inherit properties
+  this.breed = breed;
 }
 
 Dog.prototype = Object.create(Animal.prototype); // Inherit methods
 Dog.prototype.constructor = Dog;
 
-Dog.prototype.speak = function() {
-    console.log(`${this.name} barks`);
+Dog.prototype.speak = function () {
+  console.log(`${this.name} barks`);
 };
 
-let beagle = new Dog('Snoopy', 'Beagle');
+let beagle = new Dog("Snoopy", "Beagle");
 beagle.speak(); // Snoopy barks
 ```
 
@@ -579,27 +575,27 @@ beagle.speak(); // Snoopy barks
 
 ```javascript
 class Animal {
-    constructor(name) {
-        this.name = name;
-    }
+  constructor(name) {
+    this.name = name;
+  }
 
-    speak() {
-        console.log(`${this.name} makes a sound`);
-    }
+  speak() {
+    console.log(`${this.name} makes a sound`);
+  }
 }
 
 class Dog extends Animal {
-    constructor(name, breed) {
-        super(name); // Call parent constructor
-        this.breed = breed;
-    }
+  constructor(name, breed) {
+    super(name); // Call parent constructor
+    this.breed = breed;
+  }
 
-    speak() {
-        console.log(`${this.name} barks`);
-    }
+  speak() {
+    console.log(`${this.name} barks`);
+  }
 }
 
-let myDog = new Dog('Max', 'Labrador');
+let myDog = new Dog("Max", "Labrador");
 myDog.speak(); // Max barks
 ```
 
@@ -611,9 +607,9 @@ myDog.speak(); // Max barks
 
 ```javascript
 function add(a) {
-    return function(b) {
-        return a + b;
-    };
+  return function (b) {
+    return a + b;
+  };
 }
 
 let addFive = add(5);
@@ -624,7 +620,7 @@ console.log(addFive(3)); // 8
 
 ```javascript
 function multiply(a, b) {
-    return a * b;
+  return a * b;
 }
 
 let double = multiply.bind(null, 2); // Partially apply 2 as the first argument
@@ -637,8 +633,8 @@ console.log(double(5)); // 10
 
 ```javascript
 let regex = /hello/i; // Case-insensitive match for 'hello'
-console.log(regex.test('Hello')); // true
-console.log('Hello world'.match(regex)); // ['Hello']
+console.log(regex.test("Hello")); // true
+console.log("Hello world".match(regex)); // ['Hello']
 ```
 
 ---
@@ -676,11 +672,11 @@ JavaScript automatically manages memory. It frees memory that is no longer in us
 </ul>
 
 <script>
-document.getElementById("parentList").addEventListener("click", function(e) {
+  document.getElementById("parentList").addEventListener("click", function (e) {
     if (e.target && e.target.nodeName === "LI") {
-        console.log("List item clicked:", e.target.textContent);
+      console.log("List item clicked:", e.target.textContent);
     }
-});
+  });
 </script>
 ```
 
@@ -699,19 +695,25 @@ document.getElementById("parentList").addEventListener("click", function(e) {
 
 ```html
 <div id="outer">
-  <div id="inner">
-    Click Me!
-  </div>
+  <div id="inner">Click Me!</div>
 </div>
 
 <script>
-document.getElementById("outer").addEventListener("click", () => {
-    console.log("Outer DIV clicked");
-}, false);  // Bubbling phase
+  document.getElementById("outer").addEventListener(
+    "click",
+    () => {
+      console.log("Outer DIV clicked");
+    },
+    false
+  ); // Bubbling phase
 
-document.getElementById("inner").addEventListener("click", () => {
-    console.log("Inner DIV clicked");
-}, false);  // Bubbling phase
+  document.getElementById("inner").addEventListener(
+    "click",
+    () => {
+      console.log("Inner DIV clicked");
+    },
+    false
+  ); // Bubbling phase
 </script>
 ```
 
@@ -727,20 +729,26 @@ You can stop an event from propagating further by using `stopPropagation()`.
 
 ```html
 <div id="outer">
-  <div id="inner">
-    Click Me!
-  </div>
+  <div id="inner">Click Me!</div>
 </div>
 
 <script>
-document.getElementById("outer").addEventListener("click", () => {
-    console.log("Outer DIV clicked");
-}, false);
+  document.getElementById("outer").addEventListener(
+    "click",
+    () => {
+      console.log("Outer DIV clicked");
+    },
+    false
+  );
 
-document.getElementById("inner").addEventListener("click", (e) => {
-    console.log("Inner DIV clicked");
-    e.stopPropagation();  // Stops the event from propagating to the outer div
-}, false);
+  document.getElementById("inner").addEventListener(
+    "click",
+    (e) => {
+      console.log("Inner DIV clicked");
+      e.stopPropagation(); // Stops the event from propagating to the outer div
+    },
+    false
+  );
 </script>
 ```
 
@@ -758,10 +766,10 @@ This method prevents the default action associated with an event (such as follow
 <a href="https://example.com" id="link">Click me</a>
 
 <script>
-document.getElementById("link").addEventListener("click", (e) => {
-    e.preventDefault();  // Prevents the default link navigation
+  document.getElementById("link").addEventListener("click", (e) => {
+    e.preventDefault(); // Prevents the default link navigation
     console.log("Link click prevented");
-});
+  });
 </script>
 ```
 
@@ -781,18 +789,21 @@ Ensures a function is called at most once every specified interval.
 
 ```javascript
 function throttle(func, delay) {
-    let lastCall = 0;
-    return function(...args) {
-        const now = new Date().getTime();
-        if (now - lastCall < delay) return;
-        lastCall = now;
-        return func(...args);
-    };
+  let lastCall = 0;
+  return function (...args) {
+    const now = new Date().getTime();
+    if (now - lastCall < delay) return;
+    lastCall = now;
+    return func(...args);
+  };
 }
 
-window.addEventListener('resize', throttle(() => {
-    console.log('Resized');
-}, 2000));  // Ensures the resize event is fired at most once every 2 seconds
+window.addEventListener(
+  "resize",
+  throttle(() => {
+    console.log("Resized");
+  }, 2000)
+); // Ensures the resize event is fired at most once every 2 seconds
 ```
 
 ### **Debouncing**
@@ -803,18 +814,21 @@ Ensures a function is called after a specified interval of inactivity.
 
 ```javascript
 function debounce(func, delay) {
-    let timeoutId;
-    return function(...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            func(...args);
-        }, delay);
-    };
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
 }
 
-window.addEventListener('scroll', debounce(() => {
-    console.log('Scrolled');
-}, 1000));  // Executes the function 1 second after scrolling stops
+window.addEventListener(
+  "scroll",
+  debounce(() => {
+    console.log("Scrolled");
+  }, 1000)
+); // Executes the function 1 second after scrolling stops
 ```
 
 ---
@@ -829,7 +843,7 @@ Executes a function once after a delay.
 
 ```javascript
 setTimeout(() => {
-    console.log("This runs after 2 seconds");
+  console.log("This runs after 2 seconds");
 }, 2000);
 ```
 
@@ -842,10 +856,10 @@ Executes a function repeatedly at a fixed interval.
 ```javascript
 let count = 0;
 let intervalId = setInterval(() => {
-    console.log(`Interval count: ${++count}`);
-    if (count === 5) {
-        clearInterval(intervalId); // Stop after 5 iterations
-    }
+  console.log(`Interval count: ${++count}`);
+  if (count === 5) {
+    clearInterval(intervalId); // Stop after 5 iterations
+  }
 }, 1000);
 ```
 
@@ -858,17 +872,17 @@ The **event loop** is the mechanism that handles asynchronous operations in Java
 ### **Example**
 
 ```javascript
-console.log('Start');
+console.log("Start");
 
 setTimeout(() => {
-    console.log('Timeout callback');
+  console.log("Timeout callback");
 }, 0);
 
 Promise.resolve().then(() => {
-    console.log('Promise callback');
+  console.log("Promise callback");
 });
 
-console.log('End');
+console.log("End");
 ```
 
 **Output:**
@@ -910,3 +924,311 @@ console.log(original.b.c); // 2 (reference is not shared)
 ---
 
 These additional concepts cover **event delegation, propagation, throttling, debouncing**, and more, completing the missing parts of JavaScript fundamentals. Let me know if you need further explanations on any topic!
+
+### Advanced Concepts
+
+Here are some **advanced JavaScript concepts** that go beyond the fundamentals mentioned above:
+
+---
+
+## **1. Closures**
+
+A **closure** is a function that remembers its scope even after the outer function has executed. This allows inner functions to access variables from the outer scope.
+
+### **Example**
+
+```javascript
+function outer() {
+  let count = 0;
+  return function inner() {
+    count++;
+    console.log(count);
+  };
+}
+
+const counter = outer();
+counter(); // 1
+counter(); // 2
+```
+
+**Explanation:** The inner function remembers the value of `count` from the `outer` function, even after `outer` has finished executing.
+
+---
+
+## **2. Promises and Async/Await**
+
+### **Promises**
+
+A **promise** is an object representing the eventual completion or failure of an asynchronous operation.
+
+### **Example**
+
+```javascript
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Success!");
+  }, 1000);
+});
+
+promise.then((message) => {
+  console.log(message); // 'Success!' after 1 second
+});
+```
+
+### **Async/Await**
+
+**Async/Await** simplifies the process of working with promises, making asynchronous code appear synchronous.
+
+### **Example**
+
+```javascript
+async function fetchData() {
+  const response = await fetch("https://api.example.com/data");
+  const data = await response.json();
+  console.log(data);
+}
+
+fetchData();
+```
+
+---
+
+## **3. Currying**
+
+**Currying** is a technique where a function is transformed to take arguments one at a time rather than all at once.
+
+### **Example**
+
+```javascript
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return function (...nextArgs) {
+        return curried.apply(this, args.concat(nextArgs));
+      };
+    }
+  };
+}
+
+const sum = (a, b, c) => a + b + c;
+const curriedSum = curry(sum);
+console.log(curriedSum(1)(2)(3)); // 6
+```
+
+---
+
+## **4. Higher-Order Functions**
+
+A **higher-order function** is a function that takes another function as an argument or returns a function as a result.
+
+### **Example**
+
+```javascript
+function higherOrderFunction(fn) {
+  return function (x) {
+    return fn(x) * 2;
+  };
+}
+
+const double = higherOrderFunction((x) => x + 1);
+console.log(double(5)); // 12
+```
+
+---
+
+## **5. Module Pattern (IIFE)**
+
+**Immediately Invoked Function Expressions (IIFE)** are functions that run immediately after they are defined. They are commonly used to create modules and avoid polluting the global scope.
+
+### **Example**
+
+```javascript
+const module = (function () {
+  let privateVar = "I am private";
+
+  function privateMethod() {
+    console.log(privateVar);
+  }
+
+  return {
+    publicMethod: function () {
+      privateMethod();
+    },
+  };
+})();
+
+module.publicMethod(); // 'I am private'
+```
+
+---
+
+## **6. Prototypal Inheritance**
+
+**Prototypal inheritance** allows objects to inherit properties and methods from other objects.
+
+### **Example**
+
+```javascript
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function () {
+  console.log(`${this.name} makes a noise`);
+};
+
+function Dog(name) {
+  Animal.call(this, name); // Call parent constructor
+}
+
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+const dog = new Dog("Buddy");
+dog.speak(); // 'Buddy makes a noise'
+```
+
+---
+
+## **7. Call, Apply, and Bind**
+
+These methods allow you to explicitly set `this` in functions.
+
+### **`call()`**
+
+Calls a function with a given `this` value and arguments provided individually.
+
+### **Example**
+
+```javascript
+const obj = { name: "Alice" };
+function greet() {
+  console.log(`Hello, ${this.name}`);
+}
+
+greet.call(obj); // 'Hello, Alice'
+```
+
+### **`apply()`**
+
+Calls a function with a given `this` value and arguments provided as an array.
+
+### **Example**
+
+```javascript
+function sum(a, b) {
+  console.log(a + b);
+}
+
+sum.apply(null, [2, 3]); // 5
+```
+
+### **`bind()`**
+
+Returns a new function that, when called, has its `this` value set to the provided value.
+
+### **Example**
+
+```javascript
+const obj = { name: "Bob" };
+const greetBob = greet.bind(obj);
+greetBob(); // 'Hello, Bob'
+```
+
+---
+
+## **8. Generators**
+
+A **generator** is a special kind of function that can pause its execution and later resume, allowing it to produce a sequence of results over time.
+
+### **Example**
+
+```javascript
+function* generatorFunc() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const generator = generatorFunc();
+console.log(generator.next().value); // 1
+console.log(generator.next().value); // 2
+console.log(generator.next().value); // 3
+```
+
+---
+
+## **9. Symbol**
+
+**Symbols** are unique and immutable values that can be used as identifiers for object properties.
+
+### **Example**
+
+```javascript
+const sym = Symbol("description");
+const obj = {
+  [sym]: "value",
+};
+
+console.log(obj[sym]); // 'value'
+```
+
+---
+
+## **10. WeakMap and WeakSet**
+
+**WeakMap** and **WeakSet** allow you to store object keys or values without preventing their garbage collection.
+
+### **WeakMap Example**
+
+```javascript
+let obj = {};
+let weakMap = new WeakMap();
+weakMap.set(obj, "some value");
+
+obj = null; // Now obj can be garbage collected
+```
+
+### **WeakSet Example**
+
+```javascript
+let obj = {};
+let weakSet = new WeakSet();
+weakSet.add(obj);
+
+obj = null; // Now obj can be garbage collected
+```
+
+---
+
+## **11. Memoization**
+
+**Memoization** is a technique for optimizing functions by caching the results of expensive function calls.
+
+### **Example**
+
+```javascript
+function memoize(fn) {
+  const cache = {};
+  return function (...args) {
+    const key = JSON.stringify(args);
+    if (!cache[key]) {
+      cache[key] = fn(...args);
+    }
+    return cache[key];
+  };
+}
+
+const expensiveFunction = (num) => {
+  console.log("Expensive function running...");
+  return num * 2;
+};
+
+const memoizedFunction = memoize(expensiveFunction);
+console.log(memoizedFunction(5)); // Expensive function runs
+console.log(memoizedFunction(5)); // Cached result, no re-run
+```
+
+---
