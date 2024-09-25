@@ -1,7 +1,3 @@
-Here's an expanded version of the **HTML & CSS concepts** with descriptions and examples to help you understand each topic in more depth:
-
----
-
 ## HTML Concepts
 
 ### 1. **HTML Document Structure**
