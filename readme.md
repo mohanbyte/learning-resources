@@ -1231,4 +1231,236 @@ console.log(memoizedFunction(5)); // Expensive function runs
 console.log(memoizedFunction(5)); // Cached result, no re-run
 ```
 
+## **12. Optional Chaining (`?.`)**
+
+**Optional chaining** allows you to safely access deeply nested object properties without worrying about `null` or `undefined` values, preventing runtime errors.
+
+### **Example**
+
+```javascript
+const user = {
+  address: {
+    street: "Main St",
+  },
+};
+
+console.log(user?.address?.street); // 'Main St'
+console.log(user?.contact?.email); // undefined (no error)
+```
+
 ---
+
+## **13. Nullish Coalescing Operator (`??`)**
+
+The **nullish coalescing operator (`??`)** provides a way to assign a default value when the left-hand side is `null` or `undefined`, while still allowing other falsy values like `0`, `false`, or `""`.
+
+### **Example**
+
+```javascript
+const value = null ?? "Default Value"; // 'Default Value'
+const value2 = 0 ?? "Default Value"; // 0 (because 0 is not null or undefined)
+```
+
+---
+
+## **14. Destructuring Assignment**
+
+Destructuring allows you to unpack values from arrays or properties from objects into distinct variables.
+
+### **Array Destructuring Example**
+
+```javascript
+const [a, b] = [1, 2];
+console.log(a); // 1
+console.log(b); // 2
+```
+
+### **Object Destructuring Example**
+
+```javascript
+const user = { name: "John", age: 30 };
+const { name, age } = user;
+console.log(name); // 'John'
+console.log(age); // 30
+```
+
+---
+
+## **15. Spread Operator (`...`)**
+
+The **spread operator (`...`)** allows you to expand arrays or objects. It's used for merging, copying, or passing elements.
+
+### **Example**
+
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; // [1, 2, 3, 4, 5]
+
+const obj1 = { a: 1, b: 2 };
+const obj2 = { ...obj1, c: 3 }; // { a: 1, b: 2, c: 3 }
+```
+
+---
+
+## **16. Dynamic Imports**
+
+**Dynamic imports** allow you to load modules asynchronously when needed, improving performance for large applications.
+
+### **Example**
+
+```javascript
+async function loadModule() {
+  const module = await import("./someModule.js");
+  module.someFunction();
+}
+```
+
+---
+
+## **17. BigInt**
+
+**BigInt** is a built-in object that allows you to work with large integers, exceeding the `Number.MAX_SAFE_INTEGER` limit.
+
+### **Example**
+
+```javascript
+const bigInt = 1234567890123456789012345678901234567890n;
+console.log(bigInt + 10n); // 1234567890123456789012345678901234567900n
+```
+
+---
+
+## **18. Functional Programming Concepts**
+
+JavaScript supports **functional programming**, and understanding core functional concepts can be valuable:
+
+- **Pure Functions**: Functions without side effects that always return the same result given the same input.
+- **Immutability**: Avoid changing existing data. Instead, create new versions of data.
+- **Map, Filter, Reduce**: Core functional methods for working with arrays.
+
+### **Example (Map, Filter, Reduce)**
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// map: transform each value
+const doubled = numbers.map((n) => n * 2);
+
+// filter: only keep even numbers
+const evens = numbers.filter((n) => n % 2 === 0);
+
+// reduce: sum all values
+const sum = numbers.reduce((total, num) => total + num, 0);
+```
+
+---
+
+## **19. Proxy and Reflect**
+
+**Proxy** is used to create a custom handler for object operations like reading, writing, and deleting properties. **Reflect** provides default behavior for those operations.
+
+### **Example**
+
+```javascript
+const person = {
+  name: "Alice",
+  age: 25,
+};
+
+const handler = {
+  get: (target, prop) => {
+    return prop in target ? target[prop] : `Property "${prop}" does not exist.`;
+  },
+};
+
+const proxyPerson = new Proxy(person, handler);
+console.log(proxyPerson.name); // 'Alice'
+console.log(proxyPerson.height); // 'Property "height" does not exist.'
+```
+
+---
+
+## **20. Tail Call Optimization**
+
+**Tail call optimization (TCO)** is a feature of modern JavaScript engines that optimizes recursive function calls to prevent stack overflow and improve performance.
+
+### **Example**
+
+```javascript
+function factorial(n, acc = 1) {
+  if (n === 1) return acc;
+  return factorial(n - 1, n * acc); // Tail call
+}
+console.log(factorial(5)); // 120
+```
+
+---
+
+## **21. Set and Map**
+
+- **Set** is a collection of unique values.
+- **Map** is a collection of key-value pairs, where keys can be any data type.
+
+### **Set Example**
+
+```javascript
+const set = new Set([1, 2, 3, 3, 4]);
+console.log(set); // Set { 1, 2, 3, 4 }
+```
+
+### **Map Example**
+
+```javascript
+const map = new Map();
+map.set("name", "John");
+console.log(map.get("name")); // 'John'
+```
+
+---
+
+## **22. Decorators**
+
+**Decorators** are a stage-2 JavaScript proposal, often used in frameworks like Angular. They allow you to modify the behavior of classes or methods.
+
+### **Example**
+
+```javascript
+function logMethod(target, key, descriptor) {
+  const original = descriptor.value;
+  descriptor.value = function (...args) {
+    console.log(`Method ${key} called with arguments: ${args}`);
+    return original.apply(this, args);
+  };
+  return descriptor;
+}
+
+class Person {
+  @logMethod
+  sayHello(name) {
+    return `Hello, ${name}`;
+  }
+}
+
+const p = new Person();
+p.sayHello("Alice"); // Logs: Method sayHello called with arguments: Alice
+```
+
+---
+
+## **23. WeakRef and FinalizationRegistry**
+
+These are advanced memory management tools to create weak references and register callbacks for objects when they are garbage collected.
+
+### **WeakRef Example**
+
+```javascript
+let obj = { name: "example" };
+let weakRef = new WeakRef(obj);
+
+obj = null; // Object can now be garbage collected
+console.log(weakRef.deref()); // Might return undefined if garbage collected
+```
+
+---
+
+## By adding these concepts, the list becomes well-rounded for developers who want to deepen their understanding of modern JavaScript, its paradigms, and advanced usage patterns. Let me know if you'd like further explanation on any of these!
