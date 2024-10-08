@@ -1121,25 +1121,6 @@ console.log(curriedSum(1)(2)(3)); // 6
 
 ---
 
-## **4. Higher-Order Functions**
-
-A **higher-order function** is a function that takes another function as an argument or returns a function as a result.
-
-### **Example**
-
-```javascript
-function higherOrderFunction(fn) {
-  return function (x) {
-    return fn(x) * 2;
-  };
-}
-
-const double = higherOrderFunction((x) => x + 1);
-console.log(double(5)); // 12
-```
-
----
-
 ## **5. Module Pattern (IIFE)**
 
 **Immediately Invoked Function Expressions (IIFE)** are functions that run immediately after they are defined. They are commonly used to create modules and avoid polluting the global scope.
