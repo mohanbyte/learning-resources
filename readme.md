@@ -141,8 +141,6 @@ We may also declare an anonymous function using the arrow function technique whi
 } )();
 ```
 
-
-
 ---
 
 ## **3. Objects**
@@ -956,6 +954,84 @@ These additional concepts cover **event delegation, propagation, throttling, deb
 Here are some **advanced JavaScript concepts** that go beyond the fundamentals mentioned above:
 
 ---
+
+## **Javascript  Core**
+
+In JavaScript, the **memory creation** and **execution phase** are part of the execution context lifecycle that takes place during the interpretation of the code. The execution context consists of two key phases:
+
+### 1. **Memory Creation Phase (Creation Phase / Hoisting Phase)**:
+
+In this phase, the JavaScript engine performs the following actions before executing any code:
+
+- **Variable and Function Declarations Hoisting**:
+
+  - All variable declarations (using `var`, but not `let` or `const`) are hoisted, meaning they are registered in memory as `undefined`.
+  - Function declarations are hoisted entirely, meaning the function definitions are also stored in memory.
+  - Variables declared with `let` and `const` are hoisted but remain in a "temporal dead zone" until the actual line of code where they are defined.
+- **Global Object & `this` Initialization**:
+
+  - In a browser, the global execution context will also initialize the global object (`window`) and the `this` keyword, which points to that global object.
+
+  **Example:**
+
+  ```javascript
+  console.log(x); // undefined (due to var hoisting)
+  console.log(add(2, 3)); // 5 (function is fully hoisted)
+
+  var x = 10;
+
+  function add(a, b) {
+    return a + b;
+  }
+  ```
+
+  - During the creation phase, `x` is hoisted to memory but assigned `undefined`, while `add` is hoisted with its complete function definition.
+
+### 2. **Execution Phase (Code Execution Phase)**:
+
+In this phase, the JavaScript engine executes the code line-by-line:
+
+- **Assigns Values to Variables**:
+
+  - During this phase, variables get their assigned values. If any operation occurs before the assignment, it results in errors or `undefined` values, depending on the declaration type (`var`, `let`, `const`).
+- **Executes Function Calls**:
+
+  - As the interpreter encounters function calls, it pushes them onto the call stack and executes their body line-by-line.
+
+  **Example:**
+
+  ```javascript
+  console.log(x); // undefined
+  x = 10;         // now x is assigned the value 10
+  ```
+
+  - After hoisting `var x` as `undefined` during the memory creation phase, the engine assigns `10` to `x` during the execution phase.
+
+### Behavior with `let` and `const`:
+
+- Variables declared with `let` and `const` are hoisted but remain in the **temporal dead zone** until their declaration is encountered in the code.
+
+  ```javascript
+  console.log(y); // ReferenceError: Cannot access 'y' before initialization
+
+  let y = 5;
+  ```
+
+  Here, `y` is hoisted but cannot be accessed before its initialization, leading to a ReferenceError.
+
+### Summary of the Two Phases:
+
+1. **Memory Creation Phase**:
+
+   - Variables and functions are hoisted into memory.
+   - Variables are set to `undefined` (for `var`) or placed in a "temporal dead zone" (for `let` and `const`).
+   - Function declarations are hoisted with their definitions.
+2. **Execution Phase**:
+
+   - Code is executed line by line, and values are assigned to variables.
+   - Function calls are made and their bodies are executed.
+
+These two phases ensure that JavaScript's hoisting and execution work in a predictable way.
 
 ## **1. Closures**
 
