@@ -503,24 +503,6 @@ console.log(result); // [2, 4, 6]
 
 ---
 
-## **15. Closures**
-
-```javascript
-function outer() {
-  let counter = 0;
-  return function () {
-    counter++;
-    console.log(counter);
-  };
-}
-
-const increment = outer();
-increment(); // 1
-increment(); // 2
-```
-
----
-
 ## **16. `this` Keyword**
 
 ### **Global Context**
@@ -1095,86 +1077,6 @@ fetchData();
 
 ---
 
-## **3. Currying**
-
-**Currying** is a technique where a function is transformed to take arguments one at a time rather than all at once.
-
-### **Example**
-
-```javascript
-function curry(fn) {
-  return function curried(...args) {
-    if (args.length >= fn.length) {
-      return fn.apply(this, args);
-    } else {
-      return function (...nextArgs) {
-        return curried.apply(this, args.concat(nextArgs));
-      };
-    }
-  };
-}
-
-const sum = (a, b, c) => a + b + c;
-const curriedSum = curry(sum);
-console.log(curriedSum(1)(2)(3)); // 6
-```
-
----
-
-## **5. Module Pattern (IIFE)**
-
-**Immediately Invoked Function Expressions (IIFE)** are functions that run immediately after they are defined. They are commonly used to create modules and avoid polluting the global scope.
-
-### **Example**
-
-```javascript
-const module = (function () {
-  let privateVar = "I am private";
-
-  function privateMethod() {
-    console.log(privateVar);
-  }
-
-  return {
-    publicMethod: function () {
-      privateMethod();
-    },
-  };
-})();
-
-module.publicMethod(); // 'I am private'
-```
-
----
-
-## **6. Prototypal Inheritance**
-
-**Prototypal inheritance** allows objects to inherit properties and methods from other objects.
-
-### **Example**
-
-```javascript
-function Animal(name) {
-  this.name = name;
-}
-
-Animal.prototype.speak = function () {
-  console.log(`${this.name} makes a noise`);
-};
-
-function Dog(name) {
-  Animal.call(this, name); // Call parent constructor
-}
-
-Dog.prototype = Object.create(Animal.prototype);
-Dog.prototype.constructor = Dog;
-
-const dog = new Dog("Buddy");
-dog.speak(); // 'Buddy makes a noise'
-```
-
----
-
 ## **7. Call, Apply, and Bind**
 
 These methods allow you to explicitly set `this` in functions.
@@ -1402,11 +1304,73 @@ async function loadModule() {
 
 ## **17. BigInt**
 
-**BigInt** is a built-in object that allows you to work with large integers, exceeding the `Number.MAX_SAFE_INTEGER` limit.
+A  **BigInt value** , also sometimes just called a  **BigInt** , is a `bigint` [primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive), created by appending `n` to the end of an integer literal, or by calling the [`BigInt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/BigInt) function (without the `new` operator) and giving it an integer value or string value. (Built in Object)
 
 ### **Example**
 
+```
+const previouslyMaxSafeInteger = 9007199254740991n;
+
+const alsoHuge = BigInt(9007199254740991);
+// 9007199254740991n
+
+const hugeString = BigInt("9007199254740991");
+// 9007199254740991n
+
+const hugeHex = BigInt("0x1fffffffffffff");
+// 9007199254740991n
+
+const hugeOctal = BigInt("0o377777777777777777");
+// 9007199254740991n
+
+const hugeBin = BigInt(
+  "0b11111111111111111111111111111111111111111111111111111",
+);
+// 9007199254740991n
+```
+
+BigInt values are similar to Number values in some ways, but also differ in a few key matters: A BigInt value cannot be used with methods in the built-in [`Math`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) object and cannot be mixed with a Number value in operations; they must be coerced to the same type. Be careful coercing values back and forth, however, as the precision of a BigInt value may be lost when it is coerced to a Number value.
+
+### [Type information](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#type_information)
+
+When tested against `typeof`, a BigInt value (`bigint` primitive) will give `"bigint"`:
+
+**js**Copy to Clipboard
+
+```
+typeof 1n === "bigint"; // true
+typeof BigInt("1") === "bigint"; // true
+```
+
+A BigInt value can also be wrapped in an `Object`:
+
+**js**Copy to Clipboard
+
+```
+typeof Object(1n) === "object"; // true
+```
+
+### [Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#operators)
+
+Most operators support BigInts, however most do not permit operands to be of mixed types — both operands must be BigInt or neither:
+
+* [Arithmetic operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#arithmetic_operators): `+`, `-`, `*`, `/`, `%`, `**`
+* [Bitwise operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#bitwise_shift_operators): `>>`, `<<`, `&`, `|`, `^`, `~`
+* [Unary negation (`-`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_negation)
+* [Increment/decrement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#increment_and_decrement): `++`, `--`
+
+The boolean-returning operators allow mixing numbers and BigInts as operands:
+
+* [Relational operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#relational_operators) and [equality operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#equality_operators): `>`, `<`, `>=`, `<=`, `==`, `!=`, `===`, `!==`
+* [Logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#binary_logical_operators) only rely on the [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) of operands
+
+A couple of operators do not support BigInt at all:
+
+* [Unary plus (`+`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus) cannot be supported due to conflicting usage in asm.js, so it has been left out [in order to not break asm.js](https://github.com/tc39/proposal-bigint/blob/master/ADVANCED.md#dont-break-asmjs).
+* [Unsigned right shift (`>>>`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift) is the only bitwise operator that's unsupported, as every BigInt value is signed.
+
 ```javascript
+
 const bigInt = 1234567890123456789012345678901234567890n;
 console.log(bigInt + 10n); // 1234567890123456789012345678901234567900n
 ```
