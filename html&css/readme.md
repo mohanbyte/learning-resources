@@ -273,6 +273,49 @@ p {
 
 - **Pseudo-classes** apply styles to elements in a specific state (e.g., `:hover`, `:active`).
 - **Pseudo-elements** style specific parts of an element (e.g., `::before`, `::after`).
+- 
+
+Pseudo-elements and pseudo-classes (often mistakenly referred to as pseudo-tags) are both used in CSS to style elements, but they serve different purposes.
+
+### Pseudo-elements
+
+Pseudo-elements are used to style specific parts of an element. They are prefixed with double colons (`::`). Common pseudo-elements include:
+
+- `::before`: Inserts content before the element.
+- `::after`: Inserts content after the element.
+- `::first-letter`: Styles the first letter of a block.
+- `::first-line`: Styles the first line of a block.
+
+#### Example
+
+```css
+p::first-letter {
+  font-size: 2em;
+  color: red;
+}
+```
+
+### Pseudo-classes
+
+Pseudo-classes are used to define a special state of an element. They are prefixed with a single colon (`:`). Common pseudo-classes include:
+
+- `:hover`: Applies styles when the user hovers over an element.
+- `:active`: Applies styles when an element is activated.
+- `:focus`: Applies styles when an element has focus.
+- `:nth-child(n)`: Applies styles to the nth child of a parent.
+
+#### Example
+
+```css
+a:hover {
+  color: blue;
+}
+```
+
+### Summary
+
+- **Pseudo-elements**: Style specific parts of an element (e.g., `::before`, `::after`).
+- **Pseudo-classes**: Style elements based on their state (e.g., `:hover`, `:focus`).
 
 Example:
 
