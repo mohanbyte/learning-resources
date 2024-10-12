@@ -1,5 +1,11 @@
 # **JavaScript Fundamentals & Important Concepts**
 
+JIT Compiler & Interpreter (line by line executed and converted to machine code)
+
+Just in Time faster as it is converted to abstrack syntax tree first and then to byte code during runtime.
+
+process.stdout.write("Hello World-1!"); // To write without breaking into new line.
+
 ---
 
 ## **1. Basic Syntax and Operations**
@@ -119,11 +125,11 @@ sayHello((message) => console.log(message)); // Passing a function as an argumen
 
 ### Anonymous Functions
 
-An anonymous function is simply a function that does  ****not have a name**** . Unlike named functions, which are declared with a name for easy reference, anonymous functions are usually created for specific tasks and are often assigned to variables or used as arguments for other functions.
+An anonymous function is simply a function that does \***\*not have a name\*\*** . Unlike named functions, which are declared with a name for easy reference, anonymous functions are usually created for specific tasks and are often assigned to variables or used as arguments for other functions.
 
-In JavaScript, you normally use the ****function keyword followed by a name**** to declare a function. However, in an anonymous function, the name is  ****omitted**** . These functions are often used in situations where you don’t need to reuse the function outside its immediate context.
+In JavaScript, you normally use the \***\*function keyword followed by a name\*\*** to declare a function. However, in an anonymous function, the name is \***\*omitted\*\*** . These functions are often used in situations where you don’t need to reuse the function outside its immediate context.
 
-### ****Syntax****
+### \***\*Syntax\*\***
 
 The below-enlightened syntax illustrates the declaration of an anonymous function using the normal declaration:
 
@@ -937,7 +943,7 @@ Here are some **advanced JavaScript concepts** that go beyond the fundamentals m
 
 ---
 
-## **Javascript  Core**
+## **Javascript Core**
 
 In JavaScript, the **memory creation** and **execution phase** are part of the execution context lifecycle that takes place during the interpretation of the code. The execution context consists of two key phases:
 
@@ -950,6 +956,7 @@ In this phase, the JavaScript engine performs the following actions before execu
   - All variable declarations (using `var`, but not `let` or `const`) are hoisted, meaning they are registered in memory as `undefined`.
   - Function declarations are hoisted entirely, meaning the function definitions are also stored in memory.
   - Variables declared with `let` and `const` are hoisted but remain in a "temporal dead zone" until the actual line of code where they are defined.
+
 - **Global Object & `this` Initialization**:
 
   - In a browser, the global execution context will also initialize the global object (`window`) and the `this` keyword, which points to that global object.
@@ -976,6 +983,7 @@ In this phase, the JavaScript engine executes the code line-by-line:
 - **Assigns Values to Variables**:
 
   - During this phase, variables get their assigned values. If any operation occurs before the assignment, it results in errors or `undefined` values, depending on the declaration type (`var`, `let`, `const`).
+
 - **Executes Function Calls**:
 
   - As the interpreter encounters function calls, it pushes them onto the call stack and executes their body line-by-line.
@@ -984,7 +992,7 @@ In this phase, the JavaScript engine executes the code line-by-line:
 
   ```javascript
   console.log(x); // undefined
-  x = 10;         // now x is assigned the value 10
+  x = 10; // now x is assigned the value 10
   ```
 
   - After hoisting `var x` as `undefined` during the memory creation phase, the engine assigns `10` to `x` during the execution phase.
@@ -1008,6 +1016,7 @@ In this phase, the JavaScript engine executes the code line-by-line:
    - Variables and functions are hoisted into memory.
    - Variables are set to `undefined` (for `var`) or placed in a "temporal dead zone" (for `let` and `const`).
    - Function declarations are hoisted with their definitions.
+
 2. **Execution Phase**:
 
    - Code is executed line by line, and values are assigned to variables.
@@ -1304,7 +1313,7 @@ async function loadModule() {
 
 ## **17. BigInt**
 
-A  **BigInt value** , also sometimes just called a  **BigInt** , is a `bigint` [primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive), created by appending `n` to the end of an integer literal, or by calling the [`BigInt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/BigInt) function (without the `new` operator) and giving it an integer value or string value. (Built in Object)
+A **BigInt value** , also sometimes just called a **BigInt** , is a `bigint` [primitive](https://developer.mozilla.org/en-US/docs/Glossary/Primitive), created by appending `n` to the end of an integer literal, or by calling the [`BigInt()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt/BigInt) function (without the `new` operator) and giving it an integer value or string value. (Built in Object)
 
 ### **Example**
 
@@ -1354,23 +1363,22 @@ typeof Object(1n) === "object"; // true
 
 Most operators support BigInts, however most do not permit operands to be of mixed types — both operands must be BigInt or neither:
 
-* [Arithmetic operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#arithmetic_operators): `+`, `-`, `*`, `/`, `%`, `**`
-* [Bitwise operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#bitwise_shift_operators): `>>`, `<<`, `&`, `|`, `^`, `~`
-* [Unary negation (`-`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_negation)
-* [Increment/decrement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#increment_and_decrement): `++`, `--`
+- [Arithmetic operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#arithmetic_operators): `+`, `-`, `*`, `/`, `%`, `**`
+- [Bitwise operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#bitwise_shift_operators): `>>`, `<<`, `&`, `|`, `^`, `~`
+- [Unary negation (`-`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_negation)
+- [Increment/decrement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#increment_and_decrement): `++`, `--`
 
 The boolean-returning operators allow mixing numbers and BigInts as operands:
 
-* [Relational operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#relational_operators) and [equality operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#equality_operators): `>`, `<`, `>=`, `<=`, `==`, `!=`, `===`, `!==`
-* [Logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#binary_logical_operators) only rely on the [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) of operands
+- [Relational operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#relational_operators) and [equality operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#equality_operators): `>`, `<`, `>=`, `<=`, `==`, `!=`, `===`, `!==`
+- [Logical operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#binary_logical_operators) only rely on the [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) of operands
 
 A couple of operators do not support BigInt at all:
 
-* [Unary plus (`+`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus) cannot be supported due to conflicting usage in asm.js, so it has been left out [in order to not break asm.js](https://github.com/tc39/proposal-bigint/blob/master/ADVANCED.md#dont-break-asmjs).
-* [Unsigned right shift (`>>>`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift) is the only bitwise operator that's unsupported, as every BigInt value is signed.
+- [Unary plus (`+`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus) cannot be supported due to conflicting usage in asm.js, so it has been left out [in order to not break asm.js](https://github.com/tc39/proposal-bigint/blob/master/ADVANCED.md#dont-break-asmjs).
+- [Unsigned right shift (`>>>`)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift) is the only bitwise operator that's unsupported, as every BigInt value is signed.
 
 ```javascript
-
 const bigInt = 1234567890123456789012345678901234567890n;
 console.log(bigInt + 10n); // 1234567890123456789012345678901234567900n
 ```
