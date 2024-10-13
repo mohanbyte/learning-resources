@@ -12,14 +12,14 @@ process.stdout.write("Hello World-1!"); // To write without breaking into new li
 
 Primitives :
 
-Primitive itself cannot be modified, but new primitives can be created, and those values are *assigned* to variables.
+Primitive itself cannot be modified, but new primitives can be created, and those values are _assigned_ to variables.
 
-* **Boolean**
-* **Number**
-* **Null**
-* **Undefined**
-* **String**
-* **Symbol**
+- **Boolean**
+- **Number**
+- **Null**
+- **Undefined**
+- **String**
+- **Symbol**
 
 ### **Variables**
 
@@ -62,20 +62,20 @@ let andCondition = true && false; // Logical AND
 
 Below shows the precedence table for JavaScript. Note that the `..` represents markers for any variable, value, or statement.
 
-| **Precedence** | **Operator**                                                    | **Associativity** |
-| -------------------- | --------------------------------------------------------------------- | ----------------------- |
-| 12                   | `(..)`                                                              | n/a                     |
-| 11                   | `..++` , `..--`                                                   | n/a                     |
-| 10                   | `!..`, `++..`, `--..`                                           | Right-associative       |
-| 9                    | `..**..`                                                            | Right-associative       |
-| 8                    | `..*..`, `../..`, `..%..`                                       | Left-associative        |
-| 7                    | `..+..`, `..-..`                                                  | Left-associative        |
-| 6                    | `..<..`, `..<=..`, `..>..`, `..>=..`                          | Left-associative        |
-| 5                    | `..==..`, `..===..`, `..!=..`, `..!==..`                      | Left-associative        |
-| 4                    | `..&&..`                                                            | Left-associative        |
-| 3                    | `..\|\|..`                                                            | Left-associative        |
-| 2                    | `..?..:..`                                                          | Right-associative       |
-| 1                    | `..=..`, `..+=..`, `..-=..`, `../=..`, `..*=..`, `..%=..` | Right-associative       |
+| **Precedence** | **Operator**                                              | **Associativity** |
+| -------------- | --------------------------------------------------------- | ----------------- |
+| 12             | `(..)`                                                    | n/a               |
+| 11             | `..++` , `..--`                                           | n/a               |
+| 10             | `!..`, `++..`, `--..`                                     | Right-associative |
+| 9              | `..**..`                                                  | Right-associative |
+| 8              | `..*..`, `../..`, `..%..`                                 | Left-associative  |
+| 7              | `..+..`, `..-..`                                          | Left-associative  |
+| 6              | `..<..`, `..<=..`, `..>..`, `..>=..`                      | Left-associative  |
+| 5              | `..==..`, `..===..`, `..!=..`, `..!==..`                  | Left-associative  |
+| 4              | `..&&..`                                                  | Left-associative  |
+| 3              | `..\|\|..`                                                | Left-associative  |
+| 2              | `..?..:..`                                                | Right-associative |
+| 1              | `..=..`, `..+=..`, `..-=..`, `../=..`, `..*=..`, `..%=..` | Right-associative |
 
 ### **Conditional Statements**
 
@@ -120,11 +120,13 @@ for (let value of [1, 2, 3]) {
 
 ---
 
+## Types
 
+Types are groups of data with similar characteristics.
 
 ### Implicit Type conversion / Type coercion[#](https://www.educative.io/courses/javascript-in-detail-from-beginner-to-advanced/type-conversion-and-coercion#Implicit-Type-conversion--Type-coercion)
 
-The **type conversion** that happens *automatically* is the  **implicit type conversion** , also known as  **type coercion** . This usually happens when we apply operators to two different types of values. Look at the example below.
+The **type conversion** that happens _automatically_ is the **implicit type conversion** , also known as **type coercion** . This usually happens when we apply operators to two different types of values. Look at the example below.
 
 ```
 
@@ -146,13 +148,13 @@ var str_version = new String(<Original Value>).valueOf(); // explicit
 
 ### Static type checking
 
-The most generic way of defining types, **static type checking** occurs *before* the code is  *run* . C++, Go, and other languages use this technique for checking types.
+The most generic way of defining types, **static type checking** occurs _before_ the code is _run_ . C++, Go, and other languages use this technique for checking types.
 
 > **NOTE:** Because JavaScript cannot use this technique, **TypeScript** or **Flow** are used instead.
 
 ### Dynamic type checking
 
-**Dynamic type checking** is the process where type is *checked* and *assigned* during run time. This happens on the  *fly* . Languages that use this technique are **interpreted** or use a **JIT** compiler. JavaScript uses this technique.
+**Dynamic type checking** is the process where type is _checked_ and _assigned_ during run time. This happens on the _fly_ . Languages that use this technique are **interpreted** or use a **JIT** compiler. JavaScript uses this technique.
 
 With dynamic type checking, we can use type coercion seamlessly.
 
@@ -1033,6 +1035,7 @@ In this phase, the JavaScript engine performs the following actions before execu
   - All variable declarations (using `var`, but not `let` or `const`) are hoisted, meaning they are registered in memory as `undefined`.
   - Function declarations are hoisted entirely, meaning the function definitions are also stored in memory.
   - Variables declared with `let` and `const` are hoisted but remain in a "temporal dead zone" until the actual line of code where they are defined.
+
 - **Global Object & `this` Initialization**:
 
   - In a browser, the global execution context will also initialize the global object (`window`) and the `this` keyword, which points to that global object.
@@ -1059,6 +1062,7 @@ In this phase, the JavaScript engine executes the code line-by-line:
 - **Assigns Values to Variables**:
 
   - During this phase, variables get their assigned values. If any operation occurs before the assignment, it results in errors or `undefined` values, depending on the declaration type (`var`, `let`, `const`).
+
 - **Executes Function Calls**:
 
   - As the interpreter encounters function calls, it pushes them onto the call stack and executes their body line-by-line.
@@ -1091,6 +1095,7 @@ In this phase, the JavaScript engine executes the code line-by-line:
    - Variables and functions are hoisted into memory.
    - Variables are set to `undefined` (for `var`) or placed in a "temporal dead zone" (for `let` and `const`).
    - Function declarations are hoisted with their definitions.
+
 2. **Execution Phase**:
 
    - Code is executed line by line, and values are assigned to variables.
