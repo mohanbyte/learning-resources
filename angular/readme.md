@@ -150,7 +150,11 @@ export class AppModule { }
 
 ### Component Directives
 
-A component is completely a form of Component Directive, and it is a simple directive with its templates. These are like custom HTML elements that encapsulate their behavior and appearance, making them reusable components.
+1. A component is completely a form of Component Directive, and it is a simple directive with its templates. These are like custom HTML elements that encapsulate their behavior and appearance, making them reusable components.
+
+2) One of the main jobs of a component is to specify the HTML template that should be displayed when the component is used. This template defines how the component will look and what content it will display.
+3) Component directives are the most commonly used type of directive in Angular projects because they allow you to create reusable and modular pieces of your web page
+4) @component decorator provides additional metadata that determines how the component should be processed, instantiated, and used at runtime
 
 ### Attribute Directives
 
