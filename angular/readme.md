@@ -147,7 +147,6 @@ export class AppModule { }
 
 ## Angular Directives
 
-
 ### Component Directives
 
 1. A component is completely a form of Component Directive, and it is a simple directive with its templates. These are like custom HTML elements that encapsulate their behavior and appearance, making them reusable components.
@@ -243,6 +242,289 @@ Angular provides many decorators:
 | **@ContentChild()** | `@ContentChild(myPredicate)`              | Binds the first query result.                   |
 | **@ViewChild()**    | `@ViewChild(myPredicate)`                 | Binds the first view query result.              |
 
-```
+```mermaid
 
 ```
+
+## Lifecycle Hooks (Important)
+
+Angular components have lifecycle hooks that allow you to tap into key moments of a component’s life. This is essential for handling initialization, cleanup, and dynamic changes.
+
+1. **Key Lifecycle Hooks**:
+   - **ngOnInit()**: Called once, after the component is initialized. Best for data fetching.
+
+     ```typescript
+     ngOnInit() {
+       // Component initialization logic
+     }
+     ```
+   - **ngOnChanges()**: Responds to changes in `@Input` properties.
+
+     ```typescript
+     ngOnChanges(changes: SimpleChanges) {
+       // React to changes in input properties
+     }
+     ```
+   - **ngDoCheck()**: Runs with every change detection cycle (manual change detection logic).
+   - **ngAfterViewInit()**: Called after Angular fully initializes the component's view.
+   - **ngOnDestroy()**: Cleanup logic (unsubscribe from observables, destroy timers, etc.).
+
+     ```typescript
+     ngOnDestroy() {
+       // Cleanup logic
+     }
+     ```
+
+### Focus:
+
+- **ngOnInit** and **ngOnDestroy** are the most frequently used hooks in practical development.
+
+---
+
+## Services and Dependency Injection (DI)
+
+Angular services are classes that contain business logic, data access, or state management, and they are injected into components using DI.
+
+1. **Creating a Service**:
+
+   ```bash
+   ng generate service my-service
+   ```
+2. **Injecting Services**:
+
+   - To make a service globally available, provide it in the `root` injector:
+
+     ```typescript
+     @Injectable({ providedIn: 'root' })
+     export class MyService { }
+     ```
+   - Inject the service into a component:
+
+     ```typescript
+     constructor(private myService: MyService) { }
+     ```
+3. **RxJS and Services**:
+   Services frequently use **RxJS Observables** for asynchronous data streams. Common patterns include:
+
+   - `HttpClient` usage:
+     ```typescript
+     this.httpClient.get('/api/data').subscribe(data => {
+       console.log(data);
+     });
+     ```
+   - Sharing data between components using a **Subject** or **BehaviorSubject**:
+     ```typescript
+     private dataSubject = new BehaviorSubject<string>('initial data');
+     currentData = this.dataSubject.asObservable();
+
+     changeData(data: string) {
+       this.dataSubject.next(data);
+     }
+     ```
+
+---
+
+## Routing and Navigation
+
+Routing is crucial for Single Page Applications (SPA). Angular uses the **RouterModule** for navigation.
+
+1. **Setting Up Routing**:
+
+   - Define routes in a module using `RouterModule`:
+     ```typescript
+     const routes: Routes = [
+       { path: '', component: HomeComponent },
+       { path: 'about', component: AboutComponent },
+       { path: '**', component: PageNotFoundComponent } // Wildcard route
+     ];
+
+     @NgModule({
+       imports: [RouterModule.forRoot(routes)],
+       exports: [RouterModule]
+     })
+     export class AppRoutingModule { }
+     ```
+2. **Router Outlet**:
+
+   - Place `<router-outlet></router-outlet>` in your template to render the routed component.
+3. **Navigation**:
+
+   - Programmatic navigation:
+
+     ```typescript
+     this.router.navigate(['/about']);
+     ```
+   - Passing parameters to routes:
+
+     ```typescript
+     this.router.navigate(['/details', id]);
+     ```
+
+---
+
+## Angular Forms
+
+There are two main types of forms in Angular:
+
+1. **Template-driven Forms**:
+
+   - Relies on Angular directives in the template.
+
+   ```html
+   <form #myForm="ngForm">
+     <input name="email" ngModel>
+   </form>
+   ```
+2. **Reactive Forms**:
+
+   - Allows programmatic control of form structure and validation using `FormGroup` and `FormControl`.
+
+   ```typescript
+   this.myForm = new FormGroup({
+     email: new FormControl('', Validators.required)
+   });
+   ```
+
+### Validation:
+
+- **Built-in Validators**: `Validators.required`, `Validators.email`, etc.
+- **Custom Validators**: Create reusable validation logic for forms.
+
+---
+
+## Observables and RxJS
+
+Angular heavily uses **RxJS** for handling asynchronous operations such as HTTP requests, user input, or timers.
+
+1. **Observable Creation**:
+
+   ```typescript
+   const observable = new Observable(observer => {
+     observer.next('Hello');
+     observer.complete();
+   });
+   ```
+2. **Operators**:
+
+   - **map**: Transforms the data emitted by an observable.
+
+     ```typescript
+     this.httpClient.get('/api/data')
+       .pipe(map(data => data.value))
+       .subscribe(result => console.log(result));
+     ```
+   - **switchMap**: Switches to a new observable stream (often used in HTTP calls).
+3. **Subscription Management**:
+
+   - Always **unsubscribe** from observables in `ngOnDestroy` to avoid memory leaks:
+     ```typescript
+     this.mySubscription = this.observable$.subscribe();
+
+     ngOnDestroy() {
+       this.mySubscription.unsubscribe();
+     }
+     ```
+
+---
+
+## HTTP Client
+
+Angular’s `HttpClientModule` is the primary way to communicate with a backend API.
+
+1. **Basic GET request**:
+
+   ```typescript
+   this.http.get('/api/items').subscribe(data => console.log(data));
+   ```
+2. **POST Request**:
+
+   ```typescript
+   this.http.post('/api/items', itemData).subscribe();
+   ```
+3. **Error Handling**:
+
+   - Use the **catchError** operator to handle errors:
+     ```typescript
+     this.http.get('/api/items')
+       .pipe(catchError(error => {
+         console.error('Error:', error);
+         return throwError(error);
+       }));
+     ```
+
+---
+
+## Angular Directives (Expanded)
+
+1. **Attribute Directives**:
+
+   - Dynamically modify the behavior or appearance of elements.
+   - **NgClass**: Add/remove classes dynamically.
+   - **NgStyle**: Add/remove styles dynamically.
+2. **Structural Directives**:
+
+   - **NgIf**: Add or remove DOM elements conditionally.
+   - **NgFor**: Iterate over lists to dynamically generate DOM elements.
+
+---
+
+## Angular Testing
+
+1. **Unit Testing with Jasmine and Karma**:
+
+   - Unit testing is an essential part of Angular development. Angular CLI generates **spec.ts** files for components and services.
+
+   Example:
+
+   ```typescript
+   it('should create the component', () => {
+     expect(component).toBeTruthy();
+   });
+   ```
+2. **Testing Services**:
+
+   - Mock dependencies using `TestBed`.
+
+   ```typescript
+   beforeEach(() => {
+     TestBed.configureTestingModule({
+       providers: [MyService]
+     });
+   });
+   ```
+
+---
+
+## Performance Optimization Tips
+
+1. **Lazy Loading**: Load feature modules only when needed, reducing the initial load time.
+   ```typescript
+   { path: 'admin', load
+
+   ```
+
+Children: () => import('./admin/admin.module').then(m => m.AdminModule) }
+
+```
+
+2. **OnPush Change Detection**: Optimize performance by using `ChangeDetectionStrategy.OnPush` for components that don’t frequently change.
+   ```typescript
+   @Component({
+     changeDetection: ChangeDetectionStrategy.OnPush
+   })
+```
+
+3. **AOT (Ahead of Time) Compilation**: Use AOT for faster rendering and smaller bundles:
+
+   ```bash
+   ng build --prod --aot
+   ```
+4. **Preloading Modules**: Use Angular’s `PreloadAllModules` strategy to preload lazy-loaded modules after the initial load:
+
+   ```typescript
+   RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+   ```
+
+---
+
+This guide now covers a more comprehensive range of Angular concepts, including deeper insights into critical areas like services, lifecycle hooks, RxJS, and performance optimization. Let me know if any specific topics need further expansion or examples!
