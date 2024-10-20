@@ -62,20 +62,20 @@ let andCondition = true && false; // Logical AND
 
 Below shows the precedence table for JavaScript. Note that the `..` represents markers for any variable, value, or statement.
 
-| **Precedence** | **Operator**                                              | **Associativity** |
-| -------------- | --------------------------------------------------------- | ----------------- |
-| 12             | `(..)`                                                    | n/a               |
-| 11             | `..++` , `..--`                                           | n/a               |
-| 10             | `!..`, `++..`, `--..`                                     | Right-associative |
-| 9              | `..**..`                                                  | Right-associative |
-| 8              | `..*..`, `../..`, `..%..`                                 | Left-associative  |
-| 7              | `..+..`, `..-..`                                          | Left-associative  |
-| 6              | `..<..`, `..<=..`, `..>..`, `..>=..`                      | Left-associative  |
-| 5              | `..==..`, `..===..`, `..!=..`, `..!==..`                  | Left-associative  |
-| 4              | `..&&..`                                                  | Left-associative  |
-| 3              | `..\|\|..`                                                | Left-associative  |
-| 2              | `..?..:..`                                                | Right-associative |
-| 1              | `..=..`, `..+=..`, `..-=..`, `../=..`, `..*=..`, `..%=..` | Right-associative |
+| **Precedence** | **Operator**                                                    | **Associativity** |
+| -------------------- | --------------------------------------------------------------------- | ----------------------- |
+| 12                   | `(..)`                                                              | n/a                     |
+| 11                   | `..++` , `..--`                                                   | n/a                     |
+| 10                   | `!..`, `++..`, `--..`                                           | Right-associative       |
+| 9                    | `..**..`                                                            | Right-associative       |
+| 8                    | `..*..`, `../..`, `..%..`                                       | Left-associative        |
+| 7                    | `..+..`, `..-..`                                                  | Left-associative        |
+| 6                    | `..<..`, `..<=..`, `..>..`, `..>=..`                          | Left-associative        |
+| 5                    | `..==..`, `..===..`, `..!=..`, `..!==..`                      | Left-associative        |
+| 4                    | `..&&..`                                                            | Left-associative        |
+| 3                    | `..\|\|..`                                                            | Left-associative        |
+| 2                    | `..?..:..`                                                          | Right-associative       |
+| 1                    | `..=..`, `..+=..`, `..-=..`, `../=..`, `..*=..`, `..%=..` | Right-associative       |
 
 ### **Conditional Statements**
 
@@ -637,7 +637,7 @@ function Animal(name) {
 Animal.prototype.speak = function () {
   console.log(`${this.name} makes a sound`);
 };
-
+Object.setPrototypeOf(dog, animal);
 let dog = new Animal("Dog");
 dog.speak(); // Dog makes a sound
 console.log(dog.__proto__ === Animal.prototype); // true
@@ -1035,7 +1035,6 @@ In this phase, the JavaScript engine performs the following actions before execu
   - All variable declarations (using `var`, but not `let` or `const`) are hoisted, meaning they are registered in memory as `undefined`.
   - Function declarations are hoisted entirely, meaning the function definitions are also stored in memory.
   - Variables declared with `let` and `const` are hoisted but remain in a "temporal dead zone" until the actual line of code where they are defined.
-
 - **Global Object & `this` Initialization**:
 
   - In a browser, the global execution context will also initialize the global object (`window`) and the `this` keyword, which points to that global object.
@@ -1062,7 +1061,6 @@ In this phase, the JavaScript engine executes the code line-by-line:
 - **Assigns Values to Variables**:
 
   - During this phase, variables get their assigned values. If any operation occurs before the assignment, it results in errors or `undefined` values, depending on the declaration type (`var`, `let`, `const`).
-
 - **Executes Function Calls**:
 
   - As the interpreter encounters function calls, it pushes them onto the call stack and executes their body line-by-line.
@@ -1095,7 +1093,6 @@ In this phase, the JavaScript engine executes the code line-by-line:
    - Variables and functions are hoisted into memory.
    - Variables are set to `undefined` (for `var`) or placed in a "temporal dead zone" (for `let` and `const`).
    - Function declarations are hoisted with their definitions.
-
 2. **Execution Phase**:
 
    - Code is executed line by line, and values are assigned to variables.
