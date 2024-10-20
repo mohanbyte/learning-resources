@@ -527,4 +527,220 @@ Children: () => import('./admin/admin.module').then(m => m.AdminModule) }
 
 ---
 
-This guide now covers a more comprehensive range of Angular concepts, including deeper insights into critical areas like services, lifecycle hooks, RxJS, and performance optimization. Let me know if any specific topics need further expansion or examples!
+
+**## 1. What are custom elements in Angular?
+
+Answer: Custom elements in Angular are a way to create reusable components that can be used as native HTML elements. They are based on the Web Components standard and can be used outside of Angular applications. Custom elements are created using Angular’s @angular/elements package, which allows you to convert Angular components into custom elements. This is useful for integrating Angular components into non-Angular applications or libraries.
+
+---
+
+## 2. What is view encapsulation in Angular?
+
+Answer: View encapsulation in Angular controls how styles defined in a component affect the component’s view and other components. Angular provides three types of view encapsulation:
+
+* Emulated (default): Styles are scoped to the component using attributes. Styles are applied only to the component, but they don’t affect the global styles or other components.
+* ShadowDom/Native: Uses the Shadow DOM to encapsulate styles. Styles are completely isolated from the global scope and other components.
+  * This mode strictly guarantees that only that component's styles apply to elements in the component's template. Global styles cannot affect elements in a shadow tree and styles inside the shadow tree cannot affect elements outside of that shadow tree.
+* None: No encapsulation is applied. Styles defined in the component affect the entire application and global styles affect the component.
+
+---
+
+## 3. What is @ViewChild in Angular?
+
+Answer: @ViewChild is a decorator in Angular that allows you to access and interact with a child component or element in the template. It is used to get a reference to a child component, directive, or DOM element. This is useful for performing operations on child elements, such as calling methods or accessing properties.
+
+Example:
+
+| import{ Component, ViewChild, ElementRef }from'@angular/core';``@Component({``selector:'app-example',``template: `<input #myInput>`})``exportclassExampleComponent{``@ViewChild('myInput') inputElement!: ElementRef;``ngAfterViewInit() {`` this.inputElement.nativeElement.focus();``}``} |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+---
+
+## 4. What are Angular directives?
+
+Answer: Angular directives are classes that allow you to add behavior to elements in your Angular applications. There are three main types of directives:
+
+* Components: Directives with a template. They are the most common type and define a view and behavior.
+* Structural Directives: Modify the structure of the DOM, such as *ngIf and *ngFor.
+* Attribute Directives: Change the appearance or behavior of an element, such as ngClass or ngStyle.
+
+---
+
+## 5. What is trackBy in Angular?
+
+Answer: trackBy is used with *ngFor to improve performance when rendering lists. It helps Angular identify which items in the list have changed, been added, or removed by providing a unique identifier for each item. This helps Angular efficiently update the DOM without re-rendering the entire list.
+
+Example:
+
+| `<ul>` <li *ngFor="let item of items; trackBy: trackById">{{ item.name }}`</li>``</ul>` |
+| ------------------------------------------------------------------------------------------------------- |
+
+In the Component:
+
+| trackById(index:number,item: any):number{``returnitem.id;``} |
+| -------------------------------------------------------------------------- |
+
+---
+
+## 6. What is Renderer2 in Angular?
+
+Answer: Renderer2 is a service in Angular used for manipulating the DOM in a platform-independent way. It provides methods for creating, updating, and removing DOM elements, and is useful for performing DOM operations that should work across different platforms, such as server-side rendering. It helps keep your code clean and platform-agnostic.
+
+Example:
+
+| import{ Renderer2, ElementRef, AfterViewInit }from'@angular/core';``@Component({``selector:'app-example',``template:`<div #myDiv></div>`})``exportclassExampleComponentimplementsAfterViewInit {`` @ViewChild('myDiv') divElement!: ElementRef;`` constructor(privaterenderer: Renderer2) {}``ngAfterViewInit() {`` this.renderer.setStyle(this.divElement.nativeElement,'color','blue');``}``} |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+---
+
+## 7. What is @HostListener in Angular?
+
+Answer: @HostListener is a decorator in Angular that allows you to listen to events on the host element of a directive or component. It is used to handle events such as clicks, mouse movements, or any other DOM events directly on the element where the directive or component is applied.
+
+Example:
+
+| import{ Directive, HostListener }from'@angular/core';``@Directive({``selector:'[appHover]'``})``exportclassHoverDirective{``@HostListener('mouseover') onMouseOver() {`` console.log('Mouse is over the element');``}``} |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+
+---
+
+## 8. What is @HostBinding in Angular?
+
+Answer: @HostBinding is a decorator used in Angular to bind a property or attribute of the host element to a property of the directive or component. It allows you to dynamically set properties or attributes on the host element based on component or directive state.
+
+Example:
+
+| import{ Directive, HostBinding }from'@angular/core';``@Directive({`` selector:'[appHighlight]'``})``exportclassHighlightDirective{``@HostBinding('style.backgroundColor')backgroundColor:string='yellow';``} |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+---
+
+## 9. What are inbuilt pipes in Angular?
+
+Answer: Inbuilt pipes in Angular are built-in functions that transform data for display in templates. Some common inbuilt pipes are:
+
+* DatePipe: Formats dates.
+* CurrencyPipe: Formats numbers as currency.
+* DecimalPipe: Formats numbers with decimal points.
+* PercentPipe: Formats numbers as percentages.
+* JsonPipe: Converts objects to JSON strings.
+
+Example:
+
+| `<p>`{{ today |date:'shortDate' }}`</p><br/>``<p>`{{ amount | currency:'USD' }}`</p>` |
+| --------------------------------------------------------------------------- |
+
+---
+
+## 10. What is the async pipe in Angular?
+
+Answer: The async pipe in Angular subscribes to an observable or promise and returns the latest value it has emitted. It also handles unsubscribing automatically when the component is destroyed. It simplifies working with asynchronous data by directly binding to the observable or promise in the template.
+
+Example:
+
+| <div*ngIf="data$ | async as data">`<br/>`{{ data.name }}`<br/></div>` |
+| ----------------------------------------------------------- |
+
+---
+
+## 11. What is the need for services in Angular?
+
+Answer: Services in Angular are used to encapsulate and share business logic, data, and functionality across components. They provide a way to separate concerns, making code more modular, reusable, and testable. Services can be injected into components and other services, allowing you to maintain a single source of truth for data and logic.
+
+---
+
+## 12. What is an Angular module and what are its features?
+
+Answer: An Angular module is a container for a cohesive block of code that performs a specific task. It is defined using the @NgModule decorator and helps organize an Angular application into logical units. Features of Angular modules include:
+
+* Declarations: Declares components, directives, and pipes that belong to the module.
+* Imports: Imports other modules needed by the module.
+* Exports: Makes components, directives, and pipes available to other modules.
+* Providers: Registers services that can be injected throughout the module.
+* Bootstrap: Defines the root component to bootstrap the application (usually used in the root module).
+
+---
+
+## 13. What are eagerly loaded modules and lazy-loaded modules in Angular?
+
+Answer:
+
+* Eagerly Loaded Modules: These modules are loaded at the application startup. They are included in the main bundle and are available immediately when the application starts.
+* Lazy-Loaded Modules: These modules are loaded on demand, only when the user navigates to a route that requires them. This improves the initial load time of the application by splitting it into smaller chunks that are loaded as needed.
+
+Example of Lazy Loading:
+
+| constroutes: Routes = [``{ path:'admin', loadChildren: () =>import('./admin/admin.module').then(m => m.AdminModule) }``]; |
+| --------------------------------------------------------------------------------------------------------------------------------------- |
+
+---
+
+## 14. What are different types of subjects in RxJS?
+
+Answer: RxJS subjects are special types of observables that allow values to be multicasted to multiple observers. Types of subjects include:
+
+* Subject: Basic implementation of a subject. It does not store values and new subscribers only receive values emitted after they subscribe.
+* BehaviorSubject: Stores the latest value and emits it to new subscribers immediately. It requires an initial value.
+* ReplaySubject: Stores a buffer of values and emits them to new subscribers. You can configure how many values to buffer.
+* AsyncSubject: Emits the last value only when the source observable completes.
+
+---
+
+## 15. What are interceptors for requests and responses in Angular?
+
+Answer: HTTP interceptors in Angular are used to modify or handle HTTP requests and responses globally. They act as middleware in the HTTP pipeline:
+
+* Request Interceptors: Modify or add headers, authentication tokens, or other settings to outgoing HTTP requests.
+* Response Interceptors: Handle or transform responses before they are returned to the application, such as logging or error handling.
+
+Example:
+
+| import{ Injectable }from'@angular/core';``import{ HttpInterceptor, HttpRequest, HttpHandler, HttpEvent }from'@angular/common/http';``import{ Observable }from'rxjs';``@Injectable()``exportclassAuthInterceptorimplementsHttpInterceptor {``intercept(req: HttpRequest`<any>`, next: HttpHandler): Observable<HttpEvent`<any>`> {`` constauthReq = req.clone({``headers: req.headers.set('Authorization','Bearer my-token')``});`` returnnext.handle(authReq);``}``} |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+---
+
+## 16. What is test setup in Angular and how do you achieve code coverage for testing components and services?
+
+Answer: Test setup in Angular involves configuring the testing environment to run unit tests for components and services. This typically includes setting up TestBed, which is Angular's testing utility that allows you to configure and instantiate components and services for testing.
+
+Code Coverage: Code coverage tools such as Istanbul (integrated with Karma) measure how much of the code is tested by the test cases. It helps ensure that your tests cover a significant portion of your application code. Angular CLI includes built-in support for code coverage.
+
+Example:
+
+| import{ TestBed }from'@angular/core/testing';``import{ MyService }from'./my-service.service';``describe('MyService', () => {``let service: MyService;``beforeEach(() => {``TestBed.configureTestingModule({});``service = TestBed.inject(MyService);``});``it('should be created', () => {``expect(service).toBeTruthy();``});``}); |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Running Tests with Code Coverage:
+
+| ng test--code-coverage |
+| ---------------------- |
+
+---
+
+## 17. What is CanActivate, CanDeactivate, and Resolve in Angular?
+
+Answer:
+
+* CanActivate: Determines if a route can be activated. Used to restrict access based on conditions like authentication. It returns true or false, or an observable/promise that resolves to true or false.
+* CanDeactivate: Determines if a route can be deactivated. Useful for preventing navigation away from a route with unsaved changes. It returns true or false, or an observable/promise that resolves to true or false.
+* Resolve: Pre-fetches data before a route is activated. Ensures the required data is available when the component is loaded. It returns data as an observable, promise, or direct value.
+
+Examples:
+
+CanActivate Example:
+
+| import{ Injectable }from'@angular/core';`<br/>`import{ CanActivate, Router }from'@angular/router';`<br/>`import{ Observable }from'rxjs';`<br/>`import{ AuthService }from'./auth.service';`<br/><br/>`@Injectable({`<br/>`providedIn:'root'`<br/>`})`<br/>`exportclassAuthGuardimplementsCanActivate {`<br/>` constructor(privateauthService: AuthService,privaterouter: Router) {}`<br/><br/>`canActivate(): Observable`<boolean>` |Promise`<boolean>` |boolean{`<br/>` if(this.authService.isAuthenticated()) {`<br/>` returntrue;`<br/>`}else{`<br/>` this.router.navigate(['/login']);`<br/>` returnfalse;`<br/>`}`<br/>`}`<br/>`} |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+CanDeactivate Example:
+
+| import{ Injectable }from'@angular/core';`<br/>`import{ CanDeactivate }from'@angular/router';`<br/>`import{ Observable }from'rxjs';`<br/>`import{ MyComponent }from'./my.component';`<br/><br/>`@Injectable({`<br/>`providedIn:'root'`<br/>`})`<br/>`exportclassCanDeactivateGuardimplementsCanDeactivate`<MyComponent>` {`<br/>`canDeactivate(component: MyComponent): Observable`<boolean>` |Promise`<boolean>` |boolean{`<br/>` returncomponent.canDeactivate ? component.canDeactivate() :true;`<br/>`}`<br/>`} |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+Resolve Example:
+
+| import{ Injectable }from'@angular/core';``import{ Resolve, Router, ActivatedRouteSnapshot, RouterStateSnapshot }from'@angular/router';``import{ Observable, of }from'rxjs';``import{ DataService }from'./data.service';``@Injectable({``providedIn:'root'``})``exportclassDataResolverimplementsResolve`<any>` {`` constructor(privatedataService: DataService,privaterouter: Router) {}``resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable`<any>` {`` returnthis.dataService.getData().pipe(``catchError(() => {`` this.router.navigate(['/error']);`` returnof([]);``})``);``}``} |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+**
